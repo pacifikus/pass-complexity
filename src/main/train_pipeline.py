@@ -5,7 +5,7 @@ from keras.optimizers import Adam
 
 from config.config import EMBEDDING_VECTOR_LENGTH, MAX_INPUT_LENGTH, \
     DATA_PATH, MODEL_NAME, HIDDEN_DIM
-from src.quality import Losses
+from src.main.quality import Losses
 
 
 def create_model():

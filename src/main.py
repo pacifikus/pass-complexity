@@ -4,9 +4,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from config.config import DATA_PATH, TOKENIZED_DATA, TARGET_DATA, SEED
-from src.etl import start_etl
-from src.predict import make_prediction
-from src.train_pipeline import run_training
+from src.main.etl import start_etl
+from src.main.predict import make_prediction
+from src.main.train_pipeline import run_training
 
 
 def train():
@@ -41,4 +41,4 @@ def predict(password):
 
 
 if __name__ == "__main__":
-    make_prediction('qweqweqwe')
+    print(make_prediction('qweqweqwe'))

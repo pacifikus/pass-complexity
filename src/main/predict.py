@@ -1,8 +1,8 @@
 from keras.models import load_model
 
 from config.config import DATA_PATH, MODEL_NAME
-from src.preprocessors import CustomTokenizer
-from src.quality import Losses
+from src.main.preprocessors import CustomTokenizer
+from src.main.quality import Losses
 
 
 def make_prediction(password):
@@ -10,6 +10,7 @@ def make_prediction(password):
         f'{DATA_PATH}{MODEL_NAME}',
         custom_objects={'rmsle': Losses.rmsle},
     )
+    print(f'{DATA_PATH}{MODEL_NAME}')
     token = CustomTokenizer().tokenize_single_pass(password)
     predictions = model.predict(token, batch_size=1)
     return predictions[0][0]

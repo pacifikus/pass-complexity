@@ -3,7 +3,7 @@ import re
 import pandas as pd
 
 from config.config import DATA_PATH, TRAIN_DATA, TOKENIZED_DATA, TARGET_DATA
-from src.preprocessors import CustomTokenizer
+from src.main.preprocessors import CustomTokenizer
 
 
 def start_etl():
