@@ -21,6 +21,10 @@ The project includes 3 pipelines:
 - data science pipelines with a train-test split and a model fitting
 - inference pipeline with a prediction for the test data
 
+Current pipeline DAG looks like:
+
+![Pipeline DAG](https://github.com/pacifikus/pass-complexity/blob/main/imgs/viz_pipelines.png)
+
 
 ## How to run pipelines
 
