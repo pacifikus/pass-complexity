@@ -1,0 +1,38 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
+
+passwords:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/train.csv
+
+test:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/test.csv
+
+tokenized_passwords:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/tokenized_passwords.csv
+
+tokenized_test:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/tokenized_test.csv
+
+target:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/target.csv
+
+tokenizer:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/tokenizer.pkl
+
+model:
+  type: tensorflow.TensorFlowModelDataset
+  save_args:
+    save_format: pb
+  filepath: data/06_models/model.pb
+
+predictions:
+  type: pickle.PickleDataSet
+  filepath: data/07_models_output/predictions.csv

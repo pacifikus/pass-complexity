@@ -1,0 +1,12 @@
+# ETL
+
+max_input_length: 83
+
+# TRAINING
+
+seed: 42
+embedding_vector_length: 16
+hidden_dim: 16
+epochs: 8
+
+
