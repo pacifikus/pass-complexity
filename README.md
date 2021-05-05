@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a project to predict password complexity generated using `Kedro 0.17.3`.
+This is a project to predict password complexity
 
 ## How to install dependencies
 
