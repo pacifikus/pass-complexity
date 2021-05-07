@@ -36,3 +36,9 @@ model:
 predictions:
   type: pickle.PickleDataSet
   filepath: data/07_models_output/predictions.csv
+
+api_data:
+  type: api.APIDataSet
+  url: http://127.0.0.1:9876/data
+  headers:
+    Content-Type: application/json

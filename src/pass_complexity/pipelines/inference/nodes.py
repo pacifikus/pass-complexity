@@ -21,6 +21,13 @@ def predict_single(model, tokenizer, password, max_input_length):
 
 
 def predict(model, test):
+    """
+    Args:
+        model: fitted LSTM model.
+        test: passwords to strength estimate.
+    Returns:
+        Strength of the password.
+    """
     preds = model.predict(test, batch_size=1024)
     result = pd.DataFrame(preds)
     return result
