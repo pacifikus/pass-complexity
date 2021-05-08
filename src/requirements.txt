@@ -303,8 +303,6 @@ python-slugify==5.0.0
     # via cookiecutter
 pytz==2021.1
     # via pandas
-pywinpty==1.0.1
-    # via terminado
 pyyaml==5.4.1
     # via
     #   kedro
