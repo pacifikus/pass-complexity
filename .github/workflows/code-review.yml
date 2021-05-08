@@ -7,6 +7,10 @@ jobs:
     name: pycodestyle
     runs-on: ubuntu-latest
     steps:
-    - uses: reviewdog/action-setup@v1
+    - uses: actions/checkout@master
+    - name: wemake-python-styleguide
+      uses: wemake-services/wemake-python-styleguide@0.14.1
       with:
-        reviewdog_version: latest
+        reporter: 'github-pr-review'
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
