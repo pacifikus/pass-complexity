@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: wemake-python-styleguide
-      uses: wemake-services/wemake-python-styleguide@0.14.1
+      uses: ankitvgupta/pycodestyle-action@master
       with:
         reporter: 'github-pr-review'
       env:
