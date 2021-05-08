@@ -5,13 +5,13 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 
 
-def _extract_target(data):
+def extract_target(data):
     y = data['Times']
     data.drop(columns='Times', inplace=True)
     return data, y
 
 
-def _filter_whitespaces(x):
+def filter_whitespaces(x):
     x = ' '.join(re.findall(r'\S', str(x)))
     return x
 
@@ -25,9 +25,9 @@ def preprocess_passwords(passwords: pd.DataFrame, test: pd.DataFrame) -> pd.Data
     Returns:
 
     """
-    passwords, y = _extract_target(passwords)
-    passwords['Password'] = _filter_whitespaces(passwords['Password'])
-    test['Password'] = _filter_whitespaces(test['Password'])
+    passwords, y = extract_target(passwords)
+    passwords['Password'] = filter_whitespaces(passwords['Password'])
+    test['Password'] = filter_whitespaces(test['Password'])
     test.drop(columns='Id', inplace=True)
     return passwords, y, test
 

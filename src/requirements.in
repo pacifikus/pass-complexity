@@ -17,3 +17,4 @@ keras==2.4.3
 tensorflow==2.4.1
 fastapi==0.64.0
 uvicorn==0.13.4
+hypothesis==6.12.0

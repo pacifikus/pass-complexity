@@ -1,6 +1,14 @@
 [report]
 fail_under=0
 show_missing=True
+skip_empty = true
 exclude_lines =
     pragma: no cover
     raise NotImplementedError
+omit =
+    src\pass_complexity\hooks.py
+    src\pass_complexity\cli.py
+    src\pass_complexity\pipeline_registry.py
+    src\pass_complexity\__main__.py
+    src\pass_complexity\settings.py
+
