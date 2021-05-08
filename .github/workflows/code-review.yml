@@ -1,0 +1,16 @@
+name: Code review
+on:
+  push:
+  pull_request:
+jobs:
+  pycodestyle:
+    name: pycodestyle
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: wemake-python-styleguide
+      uses: wemake-services/wemake-python-styleguide@0.14.1
+      with:
+        reporter: 'github-pr-review'
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
