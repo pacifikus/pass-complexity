@@ -1,6 +1,7 @@
 # pass complexity
 
 [![Tests](https://github.com/pacifikus/pass-complexity/actions/workflows/tests.yml/badge.svg)](https://github.com/pacifikus/pass-complexity/actions/workflows/tests.yml)
+[![Code review](https://github.com/pacifikus/pass-complexity/actions/workflows/code-review.yml/badge.svg)](https://github.com/pacifikus/pass-complexity/actions/workflows/code-review.yml)
 
 ## Overview
 
