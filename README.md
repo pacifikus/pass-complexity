@@ -1,5 +1,7 @@
 # pass complexity
 
+[![Tests](https://github.com/pacifikus/pass-complexity/actions/workflows/tests.yml/badge.svg)](https://github.com/pacifikus/pass-complexity/actions/workflows/tests.yml)
+
 ## Overview
 
 This is a project to predict password complexity
