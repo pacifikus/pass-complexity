@@ -49,10 +49,10 @@ def tokenizer():
     ),
 )
 @settings(deadline=None)
-def test_predict(fitted_model, fitted_tokenizer, test):
-    test_tokens = fitted_tokenizer.texts_to_sequences(test[col_pass])
+def test_predict(model, tokenizer, test):
+    test_tokens = tokenizer.texts_to_sequences(test[col_pass])
     tokenized_test = pad_sequences(test_tokens, max_length, padding='post')
-    prediction_result = predict(fitted_model, tokenized_test)
+    prediction_result = predict(model, tokenized_test)
 
     assert isinstance(prediction_result, pd.DataFrame)
     assert len(prediction_result) == len(prediction_result)
