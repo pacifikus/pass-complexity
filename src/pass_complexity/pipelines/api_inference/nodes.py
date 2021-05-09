@@ -1,9 +1,19 @@
 import pandas as pd
 
 
-def get_api_data(data):
-    return (data.headers['date'],
-            pd.DataFrame.from_dict(data.json()['data'], orient='index').T)
+def get_api_data(data_to_format):
+    """
+    Format the data from the api.
+
+    Args:
+        data_to_format: data from the request.
+    Returns:
+         Date from headers, dataframe woth the data.
+    """
+    return (
+        data_to_format.headers['date'],
+        pd.DataFrame.from_dict(data_to_format.json()['data'], orient='index').T,
+    )
 
 
 def predict(model, test):
@@ -17,18 +27,17 @@ def predict(model, test):
          Strength of the password.
     """
     preds = model.predict(test, batch_size=1024)
-    result = pd.DataFrame(preds)
-    return result
+    return pd.DataFrame(preds)
 
 
-def serve_result(predict_date, predict):
+def serve_result(predict_date, prediction_results):
     """
     Serve result of the prediction.
 
     Args:
         predict_date: the date of the prediction.
-        predict: predicted value to return.
+        prediction_results: predicted value to return.
     Returns:
         Result.
     """
-    return predict_date, float(predict[0][0])
+    return predict_date, float(prediction_results[0][0])

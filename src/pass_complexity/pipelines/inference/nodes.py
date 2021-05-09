@@ -35,5 +35,4 @@ def predict(model, test):
 
     """
     preds = model.predict(test, batch_size=1024)
-    result = pd.DataFrame(preds)
-    return result
+    return pd.DataFrame(preds)

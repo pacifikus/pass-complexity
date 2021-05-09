@@ -9,7 +9,9 @@ class Losses:
         y_pred = tf.cast(y_pred, tf.float32)
         return tf.math.sqrt(
             tf.reduce_mean(
-                tf.math.squared_difference(tf.math.log1p(y_pred),
-                                           tf.math.log1p(y_true)),
+                tf.math.squared_difference(
+                    tf.math.log1p(y_pred),
+                    tf.math.log1p(y_true),
+                ),
             ),
         )

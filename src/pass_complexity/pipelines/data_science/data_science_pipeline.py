@@ -1,8 +1,15 @@
 from kedro.pipeline import Pipeline, node
+
 from pass_complexity.pipelines.data_science.nodes import create_model, split_data
 
 
 def create_pipeline(**kwargs):
+    """Create data science pipeline.
+
+    Returns:
+        Builded pipeline for the ds process: tokenization, data split, model fit.
+
+    """
     return Pipeline(
         [
             node(
@@ -14,14 +21,16 @@ def create_pipeline(**kwargs):
             ),
             node(
                 func=create_model,
-                inputs=['X_train',
-                        'X_val',
-                        'y_train',
-                        'y_val',
-                        'params:embedding_vector_length',
-                        'params:max_input_length',
-                        'params:hidden_dim',
-                        'params:epochs'],
+                inputs=[
+                    'X_train',
+                    'X_val',
+                    'y_train',
+                    'y_val',
+                    'params:embedding_vector_length',
+                    'params:max_input_length',
+                    'params:hidden_dim',
+                    'params:epochs',
+                ],
                 outputs='model',
                 name='train_model_node',
                 tags=['training'],

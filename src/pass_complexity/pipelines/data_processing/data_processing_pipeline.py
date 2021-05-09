@@ -1,4 +1,5 @@
 from kedro.pipeline import Pipeline, node
+
 from pass_complexity.pipelines.data_processing.nodes import (
     fit_tokenizer,
     preprocess_passwords,
@@ -7,6 +8,12 @@ from pass_complexity.pipelines.data_processing.nodes import (
 
 
 def create_pipeline(**kwargs):
+    """Create data processing pipeline.
+
+    Returns:
+        Builded pipeline for the etl.
+
+    """
     return Pipeline(
         [
             node(
@@ -25,10 +32,12 @@ def create_pipeline(**kwargs):
             ),
             node(
                 func=tokenize_data,
-                inputs=['tokenizer',
-                        'preprocessed_passwords',
-                        'preprocessed_test',
-                        'params:max_input_length'],
+                inputs=[
+                    'tokenizer',
+                    'preprocessed_passwords',
+                    'preprocessed_test',
+                    'params:max_input_length',
+                ],
                 outputs=['tokenized_passwords', 'tokenized_test'],
                 name='tokenize_passwords_node',
                 tags=['training'],

@@ -1,4 +1,5 @@
 from kedro.pipeline import Pipeline, node
+
 from pass_complexity.pipelines.api_inference.nodes import (
     get_api_data,
     predict,
@@ -7,6 +8,12 @@ from pass_complexity.pipelines.api_inference.nodes import (
 
 
 def create_pipeline(**kwargs):
+    """Create api inference pipeline.
+
+    Returns:
+        Builded pipeline for the inference from an api.
+
+    """
     return Pipeline(
         [
             node(
