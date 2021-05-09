@@ -18,5 +18,4 @@ if __name__ == '__main__':
             df = pd.DataFrame().from_dict(response)
             df.to_csv('data/answer.csv', mode='a', header=False, index=False)
         except KeyboardInterrupt:
-            print('Receiving is done...')
             break

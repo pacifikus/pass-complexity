@@ -4,7 +4,6 @@ from keras.layers import LSTM, Dense, Embedding, ReLU
 from keras.models import Sequential
 from keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
-
 from pass_complexity.pipelines.data_science.quality import Losses
 
 batch_size = 512

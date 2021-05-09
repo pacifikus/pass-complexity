@@ -4,7 +4,6 @@ import pandas as pd
 from hypothesis import given, strategies
 from hypothesis.extra.pandas import column, data_frames
 from keras.preprocessing.text import Tokenizer
-
 from pass_complexity.pipelines.data_processing.nodes import (
     extract_target,
     filter_whitespaces,

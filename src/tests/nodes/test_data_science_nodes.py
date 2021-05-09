@@ -1,7 +1,6 @@
 import pandas as pd
 from hypothesis import given, strategies
 from hypothesis.extra.pandas import column, data_frames, range_indexes
-
 from pass_complexity.pipelines.data_science.nodes import split_data
 
 max_length = 83
