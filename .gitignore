@@ -160,3 +160,4 @@ venv.bak/
 #pycharm
 .idea
 
+/.ipython/
