@@ -25,7 +25,6 @@
 #
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""pass complexity
-"""
+"""pass complexity."""
 
-__version__ = "0.1"
+__version__ = '0.1'

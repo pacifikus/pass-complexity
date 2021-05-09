@@ -30,10 +30,12 @@
 from typing import Dict
 
 from kedro.pipeline import Pipeline
+from pass_complexity.pipelines.api_inference import (
+    api_inference_pipleline as api_inference,
+)
 from pass_complexity.pipelines.data_processing import data_processing_pipeline as de
 from pass_complexity.pipelines.data_science import data_science_pipeline as ds
 from pass_complexity.pipelines.inference import inference_pipeline as inference
-from pass_complexity.pipelines.api_inference import api_inference_pipleline as api_inference
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -48,9 +50,12 @@ def register_pipelines() -> Dict[str, Pipeline]:
     api_inference_pipeline = api_inference.create_pipeline()
 
     return {
-        "__default__": data_processing_pipeline + data_science_pipeline + inference_pipeline,
-        "data_processing": data_processing_pipeline,
-        "data_science": data_science_pipeline,
-        "inference": inference_pipeline,
-        "api_inference": api_inference_pipeline,
+        '__default__':
+            data_processing_pipeline +
+            data_science_pipeline +
+            inference_pipeline,
+        'data_processing': data_processing_pipeline,
+        'data_science': data_science_pipeline,
+        'inference': inference_pipeline,
+        'api_inference': api_inference_pipeline,
     }

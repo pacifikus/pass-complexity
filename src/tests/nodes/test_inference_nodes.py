@@ -3,19 +3,18 @@ import pickle
 import numpy as np
 import pandas as pd
 import pytest
-from hypothesis import given, strategies, settings
-from hypothesis.extra.pandas import data_frames, column, range_indexes
+from hypothesis import given, settings, strategies
+from hypothesis.extra.pandas import column, data_frames, range_indexes
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
-
 from pass_complexity.pipelines.inference.nodes import predict, predict_single
 
 
 @pytest.fixture(scope='session')
 def model():
     return load_model(
-        f'data/06_models/model.pb',
-        compile=False
+        'data/06_models/model.pb',
+        compile=False,
     )
 
 
@@ -28,7 +27,7 @@ def tokenizer():
 @given(
     strategies.text(min_size=3,
                     max_size=83,
-                    alphabet=list('qwertyuiopasdfghjklzxcvbnm'))
+                    alphabet=list('qwertyuiopasdfghjklzxcvbnm')),
 )
 @settings(deadline=None)
 def test_predict_single(model, tokenizer, test):
@@ -45,8 +44,8 @@ def test_predict_single(model, tokenizer, test):
                    elements=strategies.text(min_size=3,
                                             max_size=83,
                                             alphabet=list('abcdef0123456789 '))),
-        ]
-    )
+        ],
+    ),
 )
 @settings(deadline=None)
 def test_predict(model, tokenizer, test):

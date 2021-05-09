@@ -1,29 +1,46 @@
 import re
-from typing import Dict
+
 import pandas as pd
-from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.text import Tokenizer
 
 
 def extract_target(data):
+    """
+    Extract targets from the train.
+
+    Args:
+        data: raw train data.
+    Returns:
+        Train data and targets.
+    """
     y = data['Times']
     data.drop(columns='Times', inplace=True)
     return data, y
 
 
 def filter_whitespaces(x):
+    """
+    Filter redundant whitespaces from the string.
+
+    Args:
+        x: raw string.
+    Returns:
+        String with redundant whitespaces replaced by a single space.
+    """
     x = ' '.join(re.findall(r'\S', str(x)))
     return x
 
 
 def preprocess_passwords(passwords: pd.DataFrame, test: pd.DataFrame) -> pd.DataFrame:
-    """Preprocesses the passwords data.
+    """
+    Preprocesses the passwords data.
 
     Args:
         passwords: raw train data.
         test: raw test data.
     Returns:
-
+        Preprocessed train passwords targets and test.
     """
     passwords, y = extract_target(passwords)
     passwords['Password'] = filter_whitespaces(passwords['Password'])
@@ -33,7 +50,8 @@ def preprocess_passwords(passwords: pd.DataFrame, test: pd.DataFrame) -> pd.Data
 
 
 def fit_tokenizer(passwords: pd.DataFrame) -> Tokenizer:
-    """Custom tokenizer init
+    """
+    Fit tokenizer.
 
     Args:
         passwords: Data for the tokenization.
@@ -47,9 +65,10 @@ def fit_tokenizer(passwords: pd.DataFrame) -> Tokenizer:
 
 def tokenize_data(tokenizer: Tokenizer,
                   passwords: pd.DataFrame,
-                  test:pd.DataFrame,
+                  test: pd.DataFrame,
                   max_input_length: int) -> pd.DataFrame:
-    """Tokenize passwords
+    """
+    Tokenize passwords.
 
     Args:
         tokenizer: fitted keras tokenizer.

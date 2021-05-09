@@ -1,23 +1,24 @@
+"""Tests for api_inference nodes."""
+
 import pickle
 from datetime import datetime
 
 import numpy as np
 import pandas as pd
 import pytest
-from hypothesis import given, strategies, settings
+from hypothesis import given, settings, strategies
 from hypothesis.extra.numpy import arrays as np_arrays
-from hypothesis.extra.pandas import data_frames, column, range_indexes
+from hypothesis.extra.pandas import column, data_frames, range_indexes
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
-
 from pass_complexity.pipelines.api_inference.nodes import predict, serve_result
 
 
 @pytest.fixture(scope='session')
 def model():
     return load_model(
-        f'data/06_models/model.pb',
-        compile=False
+        'data/06_models/model.pb',
+        compile=False,
     )
 
 
@@ -27,18 +28,6 @@ def tokenizer():
         return pickle.load(handle)
 
 
-# @given(
-#     strategies.text(min_size=3,
-#                     max_size=83,
-#                     alphabet=list('qwertyuiopasdfghjklzxcvbnm'))
-# )
-# @settings(deadline=None)
-# def test_predict_single(model, tokenizer, test):
-#     result = predict_single(model, tokenizer, test, 83)
-#
-#     assert isinstance(result, np.float32)
-#
-
 @given(
     data_frames(
         index=range_indexes(min_size=10, max_size=10),
@@ -47,8 +36,8 @@ def tokenizer():
                    elements=strategies.text(min_size=3,
                                             max_size=83,
                                             alphabet=list('abcdef0123456789 '))),
-        ]
-    )
+        ],
+    ),
 )
 @settings(deadline=None)
 def test_predict(model, tokenizer, test):
@@ -61,7 +50,7 @@ def test_predict(model, tokenizer, test):
 
 
 @given(
-    np_arrays(dtype=np.float32, shape=(1, 1, 1))
+    np_arrays(dtype=np.float32, shape=(1, 1, 1)),
 )
 def test_serve_result(predict):
     result_date, result_value = serve_result(datetime.now(), predict)

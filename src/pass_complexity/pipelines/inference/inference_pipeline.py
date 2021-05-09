@@ -7,10 +7,10 @@ def create_pipeline(**kwargs):
         [
             node(
                 func=predict,
-                inputs=["model", "tokenized_test"],
-                outputs="predictions",
-                name="inference_node",
-                tags=["inference"],
+                inputs=['model', 'tokenized_test'],
+                outputs='predictions',
+                name='inference_node',
+                tags=['inference'],
             ),
-        ]
+        ],
     )

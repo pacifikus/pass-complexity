@@ -10,6 +10,6 @@ class Losses:
         return tf.math.sqrt(
             tf.reduce_mean(
                 tf.math.squared_difference(tf.math.log1p(y_pred),
-                                           tf.math.log1p(y_true))
-            )
+                                           tf.math.log1p(y_true)),
+            ),
         )

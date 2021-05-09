@@ -1,18 +1,15 @@
-import logging
-from typing import Dict, Tuple
 import pandas as pd
-from sklearn.model_selection import train_test_split
-
 from keras.callbacks import EarlyStopping
-from keras.layers import Dense, LSTM, Embedding, ReLU
+from keras.layers import LSTM, Dense, Embedding, ReLU
 from keras.models import Sequential
 from keras.optimizers import Adam
-
 from pass_complexity.pipelines.data_science.quality import Losses
+from sklearn.model_selection import train_test_split
 
 
 def split_data(data: pd.DataFrame, target: pd.DataFrame, seed: int):
-    """Train-test split creation in a 9:1 proportion.
+    """
+    Train-test split creation in a 9:1 proportion.
 
     Args:
         data: dataset to split.
@@ -21,27 +18,28 @@ def split_data(data: pd.DataFrame, target: pd.DataFrame, seed: int):
     Returns:
         Splitted data.
     """
-    X_train, X_val, y_train, y_val = train_test_split(
+    x_train, x_val, y_train, y_val = train_test_split(
         data,
         target,
         test_size=0.1,
         random_state=seed)
-    return X_train, X_val, y_train, y_val
+    return x_train, x_val, y_train, y_val
 
 
-def create_model(X_train: pd.DataFrame,
-                 X_val: pd.DataFrame,
+def create_model(x_train: pd.DataFrame,
+                 x_val: pd.DataFrame,
                  y_train: pd.DataFrame,
                  y_val: pd.DataFrame,
                  embedding_layer_length: int,
                  max_input_length: int,
                  hidden_dim: int,
-                 epochs: int,) -> Sequential:
-    """Tokenize passwords
+                 epochs: int) -> Sequential:
+    """
+    Tokenize passwords.
 
     Args:
-        X_train: train data.
-        X_val: validation data.
+        x_train: train data.
+        x_val: validation data.
         y_train: train target.
         y_val: validation target.
         embedding_layer_length: Embedding layer output_dim defined in parameters.yml.
@@ -72,10 +70,10 @@ def create_model(X_train: pd.DataFrame,
         mode='auto',
     )
     model.fit(
-        X_train, y_train,
+        x_train, y_train,
         epochs=epochs,
         batch_size=512,
-        validation_data=(X_val, y_val),
+        validation_data=(x_val, y_val),
         callbacks=[early_stopping],
     )
 

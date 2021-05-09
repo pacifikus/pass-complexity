@@ -25,9 +25,7 @@
 #
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""pass complexity file for ensuring the package is executable
-as `pass-complexity` and `python -m pass_complexity`
-"""
+"""pass complexity file for ensuring the package is executable as `pass-complexity` and `python -m pass_complexity`."""
 from pathlib import Path
 
 from kedro.framework.project import configure_project
@@ -40,5 +38,5 @@ def main():
     run()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -1,10 +1,12 @@
 import re
+
 import pandas as pd
 from keras.preprocessing.sequence import pad_sequences
 
 
 def predict_single(model, tokenizer, password, max_input_length):
-    """
+    """Make prediction for the single string.
+
     Args:
         model: fitted LSTM model.
         tokenizer: fitted keras tokenizer.
@@ -12,21 +14,25 @@ def predict_single(model, tokenizer, password, max_input_length):
         max_input_length: Max length of input text defined in parameters.yml.
     Returns:
         Strength of the password.
+
     """
-    password = " ".join(re.findall(r"\S", str(password)))
+    password = ' '.join(re.findall(r'\S', str(password)))
     token = tokenizer.texts_to_sequences([password])
-    token = pad_sequences(token, max_input_length, padding="post")
+    token = pad_sequences(token, max_input_length, padding='post')
     predictions = model.predict(token, batch_size=1)
     return predictions[0][0]
 
 
 def predict(model, test):
     """
+    Make prediction for the pandas dataframe.
+
     Args:
-        model: fitted LSTM model.
-        test: passwords to strength estimate.
+         model: fitted LSTM model.
+         test: passwords to strength estimate.
     Returns:
-        Strength of the password.
+         Strength of the password.
+
     """
     preds = model.predict(test, batch_size=1024)
     result = pd.DataFrame(preds)

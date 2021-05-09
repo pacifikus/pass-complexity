@@ -27,7 +27,9 @@
 # limitations under the License.
 
 """Command line tools for manipulating a Kedro project.
-Intended to be invoked via `kedro`."""
+
+Intended to be invoked via `kedro`.
+"""
 from itertools import chain
 from pathlib import Path
 from typing import Iterable, Tuple
@@ -44,7 +46,7 @@ from kedro.framework.cli.utils import (
 from kedro.framework.session import KedroSession
 from kedro.utils import load_obj
 
-CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
+CONTEXT_SETTINGS = {'help_option_names': ['-h', '--help']}
 
 FROM_INPUTS_HELP = (
     """A list of dataset names which should be used as a starting point."""
@@ -77,7 +79,7 @@ so parameter values are allowed to contain colons, parameter keys are not."""
 
 
 def _get_values_as_tuple(values: Iterable[str]) -> Tuple[str, ...]:
-    return tuple(chain.from_iterable(value.split(",") for value in values))
+    return tuple(chain.from_iterable(value.split(',') for value in values))
 
 
 @click.group(context_settings=CONTEXT_SETTINGS, name=__file__)
@@ -87,70 +89,70 @@ def cli():
 
 @cli.command()
 @click.option(
-    "--from-inputs", type=str, default="", help=FROM_INPUTS_HELP, callback=split_string
+    '--from-inputs', type=str, default='', help=FROM_INPUTS_HELP, callback=split_string,
 )
 @click.option(
-    "--to-outputs", type=str, default="", help=TO_OUTPUTS_HELP, callback=split_string
+    '--to-outputs', type=str, default='', help=TO_OUTPUTS_HELP, callback=split_string,
 )
 @click.option(
-    "--from-nodes", type=str, default="", help=FROM_NODES_HELP, callback=split_string
+    '--from-nodes', type=str, default='', help=FROM_NODES_HELP, callback=split_string,
 )
 @click.option(
-    "--to-nodes", type=str, default="", help=TO_NODES_HELP, callback=split_string
+    '--to-nodes', type=str, default='', help=TO_NODES_HELP, callback=split_string,
 )
-@click.option("--node", "-n", "node_names", type=str, multiple=True, help=NODE_ARG_HELP)
+@click.option('--node', '-n', 'node_names', type=str, multiple=True, help=NODE_ARG_HELP)
 @click.option(
-    "--runner", "-r", type=str, default=None, multiple=False, help=RUNNER_ARG_HELP
+    '--runner', '-r', type=str, default=None, multiple=False, help=RUNNER_ARG_HELP,
 )
-@click.option("--parallel", "-p", is_flag=True, multiple=False, help=PARALLEL_ARG_HELP)
-@click.option("--async", "is_async", is_flag=True, multiple=False, help=ASYNC_ARG_HELP)
+@click.option('--parallel', '-p', is_flag=True, multiple=False, help=PARALLEL_ARG_HELP)
+@click.option('--async', 'is_async', is_flag=True, multiple=False, help=ASYNC_ARG_HELP)
 @env_option
-@click.option("--tag", "-t", type=str, multiple=True, help=TAG_ARG_HELP)
+@click.option('--tag', '-t', type=str, multiple=True, help=TAG_ARG_HELP)
 @click.option(
-    "--load-version",
-    "-lv",
+    '--load-version',
+    '-lv',
     type=str,
     multiple=True,
     help=LOAD_VERSION_HELP,
     callback=_reformat_load_versions,
 )
-@click.option("--pipeline", type=str, default=None, help=PIPELINE_ARG_HELP)
+@click.option('--pipeline', type=str, default=None, help=PIPELINE_ARG_HELP)
 @click.option(
-    "--config",
-    "-c",
+    '--config',
+    '-c',
     type=click.Path(exists=True, dir_okay=False, resolve_path=True),
     help=CONFIG_FILE_HELP,
     callback=_config_file_callback,
 )
 @click.option(
-    "--params", type=str, default="", help=PARAMS_ARG_HELP, callback=_split_params
+    '--params', type=str, default='', help=PARAMS_ARG_HELP, callback=_split_params,
 )
 def run(
-    tag,
-    env,
-    parallel,
-    runner,
-    is_async,
-    node_names,
-    to_nodes,
-    from_nodes,
-    from_inputs,
-    to_outputs,
-    load_version,
-    pipeline,
-    config,
-    params,
+        tag,
+        env,
+        parallel,
+        runner,
+        is_async,
+        node_names,
+        to_nodes,
+        from_nodes,
+        from_inputs,
+        to_outputs,
+        load_version,
+        pipeline,
+        config,
+        params,
 ):
     """Run the pipeline."""
     if parallel and runner:
         raise KedroCliError(
-            "Both --parallel and --runner options cannot be used together. "
-            "Please use either --parallel or --runner."
+            'Both --parallel and --runner options cannot be used together. '
+            'Please use either --parallel or --runner.',
         )
-    runner = runner or "SequentialRunner"
+    runner = runner or 'SequentialRunner'
     if parallel:
-        runner = "ParallelRunner"
-    runner_class = load_obj(runner, "kedro.runner")
+        runner = 'ParallelRunner'
+    runner_class = load_obj(runner, 'kedro.runner')
 
     tag = _get_values_as_tuple(tag) if tag else tag
     node_names = _get_values_as_tuple(node_names) if node_names else node_names

@@ -2,11 +2,14 @@ import string
 
 import pandas as pd
 from hypothesis import given, strategies
-from hypothesis.extra.pandas import data_frames, column
+from hypothesis.extra.pandas import column, data_frames
 from keras.preprocessing.text import Tokenizer
-
-from pass_complexity.pipelines.data_processing.nodes \
-    import extract_target, filter_whitespaces, preprocess_passwords, fit_tokenizer
+from pass_complexity.pipelines.data_processing.nodes import (
+    extract_target,
+    filter_whitespaces,
+    fit_tokenizer,
+    preprocess_passwords,
+)
 
 
 @given(
@@ -20,8 +23,8 @@ from pass_complexity.pipelines.data_processing.nodes \
                    elements=strategies.floats(allow_nan=False,
                                               allow_infinity=False,
                                               min_value=0)),
-        ]
-    )
+        ],
+    ),
 )
 def test_extract_target(data):
     x, y = extract_target(data)
@@ -33,7 +36,7 @@ def test_extract_target(data):
 
 
 @given(
-    strategies.text(min_size=3, max_size=83)
+    strategies.text(min_size=3, max_size=83),
 )
 def test_filter_whitespaces(input_string):
     res = filter_whitespaces(input_string)
@@ -57,7 +60,7 @@ def test_filter_whitespaces(input_string):
                    elements=strategies.floats(allow_nan=False,
                                               allow_infinity=False,
                                               min_value=0, max_value=10)),
-        ]
+        ],
     ),
     data_frames(
         [
@@ -67,8 +70,8 @@ def test_filter_whitespaces(input_string):
             column('Password', dtype=str,
                    elements=strategies.text(min_size=3,
                                             max_size=83)),
-        ]
-    )
+        ],
+    ),
 )
 def test_preprocess_passwords(data, test):
     passwords, y, test = preprocess_passwords(data, test)
@@ -94,8 +97,8 @@ def test_preprocess_passwords(data, test):
                                               allow_infinity=False,
                                               min_value=0,
                                               max_value=10)),
-        ]
-    )
+        ],
+    ),
 )
 def test_fit_tokenizer(data):
     tokenizer = fit_tokenizer(data)
