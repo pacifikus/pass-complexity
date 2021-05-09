@@ -2,6 +2,7 @@
 
 [![Tests](https://github.com/pacifikus/pass-complexity/actions/workflows/tests.yml/badge.svg)](https://github.com/pacifikus/pass-complexity/actions/workflows/tests.yml)
 [![Code review](https://github.com/pacifikus/pass-complexity/actions/workflows/code-review.yml/badge.svg)](https://github.com/pacifikus/pass-complexity/actions/workflows/code-review.yml)
+[![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
 ## Overview
 
