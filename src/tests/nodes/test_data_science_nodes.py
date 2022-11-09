@@ -38,7 +38,8 @@ max_length = 83
     strategies.integers(min_value=0, max_value=1000),
 )
 def test_split_data(x_data, y_data, seed):
-    x_train, x_val, y_train, y_val = split_data(x_data, y_data, seed)
+    params = {'seed': seed}
+    x_train, x_val, y_train, y_val = split_data(x_data, y_data, params)
 
     assert isinstance(x_train, pd.DataFrame)
     assert isinstance(x_val, pd.DataFrame)

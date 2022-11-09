@@ -1,3 +1,7 @@
+"""
+This is a boilerplate pipeline 'api_inference'
+generated using Kedro 0.18.3
+"""
 from kedro.pipeline import Pipeline, node
 
 from pass_complexity.pipelines.api_inference.nodes import (

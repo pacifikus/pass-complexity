@@ -1,3 +1,7 @@
+"""
+This is a boilerplate pipeline 'api_inference'
+generated using Kedro 0.18.3
+"""
 import pandas as pd
 
 

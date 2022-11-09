@@ -1,7 +1,11 @@
+"""
+This is a boilerplate pipeline 'inference'
+generated using Kedro 0.18.3
+"""
 import re
 
 import pandas as pd
-from keras.preprocessing.sequence import pad_sequences
+from keras.utils import pad_sequences
 
 
 def predict_single(model, tokenizer, password, max_input_length):

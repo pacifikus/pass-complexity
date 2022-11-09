@@ -1,3 +1,8 @@
+"""
+This is a boilerplate pipeline 'data_processing'
+generated using Kedro 0.18.3
+"""
+
 from kedro.pipeline import Pipeline, node
 
 from pass_complexity.pipelines.data_processing.nodes import (
@@ -36,7 +41,7 @@ def create_pipeline(**kwargs):
                     'tokenizer',
                     'preprocessed_passwords',
                     'preprocessed_test',
-                    'params:max_input_length',
+                    'params:tokenize_options',
                 ],
                 outputs=['tokenized_passwords', 'tokenized_test'],
                 name='tokenize_passwords_node',

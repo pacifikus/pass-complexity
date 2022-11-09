@@ -1,0 +1,12 @@
+# This is a boilerplate parameters config generated for pipeline 'data_science'
+# using Kedro 0.18.3.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://kedro.readthedocs.io/en/0.18.3/kedro_project_setup/configuration.html#parameters
+
+training_options:
+  seed: 42
+  embedding_vector_length: 16
+  hidden_dim: 16
+  epochs: 8
+  batch_size: 512

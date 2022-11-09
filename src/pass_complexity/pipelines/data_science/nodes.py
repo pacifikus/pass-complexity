@@ -1,3 +1,8 @@
+"""
+This is a boilerplate pipeline 'data_science'
+generated using Kedro 0.18.3
+"""
+
 import pandas as pd
 from keras.callbacks import EarlyStopping
 from keras.layers import LSTM, Dense, Embedding, ReLU
@@ -5,18 +10,17 @@ from keras.models import Sequential
 from keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 from pass_complexity.pipelines.data_science.quality import Losses
+from typing import Dict
 
-batch_size = 512
 
-
-def split_data(data_to_split: pd.DataFrame, target: pd.DataFrame, seed: int):
+def split_data(data_to_split: pd.DataFrame, target: pd.DataFrame, params: Dict):
     """
     Train-test split creation in a 9:1 proportion.
 
     Args:
         data_to_split: dataset to split.
         target: target to split.
-        seed: random state defined in parameters.yml.
+        params: dict with training params, defined in conf/base/parameters/data_science
     Returns:
         Splitted data.
     """
@@ -24,7 +28,7 @@ def split_data(data_to_split: pd.DataFrame, target: pd.DataFrame, seed: int):
         data_to_split,
         target,
         test_size=0.1,
-        random_state=seed,
+        random_state=params['seed'],
     )
 
 
@@ -33,10 +37,7 @@ def create_model(
     x_val: pd.DataFrame,
     y_train: pd.DataFrame,
     y_val: pd.DataFrame,
-    embedding_layer_length: int,
-    max_input_length: int,
-    hidden_dim: int,
-    epochs: int,
+    params: Dict,
 ) -> Sequential:
     """
     Tokenize passwords.
@@ -46,10 +47,7 @@ def create_model(
         x_val: validation data.
         y_train: train target.
         y_val: validation target.
-        embedding_layer_length: Embedding layer output_dim defined in parameters.yml.
-        max_input_length: Max length of input text defined in parameters.yml.
-        hidden_dim: dimensionality of the LSTM output space defined in parameters.yml.
-        epochs: number of training epochs defined in parameters.yml.
+        params: dict with training params, defined in conf/base/parameters/data_science
     Returns:
         Keras Sequential model.
     """
@@ -57,13 +55,13 @@ def create_model(
     model.add(
         Embedding(
             100,
-            embedding_layer_length,
-            input_length=max_input_length,
+            params['embedding_layer_length'],
+            input_length=params['max_input_length'],
             mask_zero=True,
         ),
     )
 
-    model.add(LSTM(hidden_dim))
+    model.add(LSTM(params['hidden_dim']))
     model.add(Dense(1))
     model.add(ReLU())
 
@@ -82,8 +80,8 @@ def create_model(
     model.fit(
         x_train,
         y_train,
-        epochs=epochs,
-        batch_size=batch_size,
+        epochs=params['epochs'],
+        batch_size=params['batch_size'],
         validation_data=(x_val, y_val),
         callbacks=[early_stopping],
     )

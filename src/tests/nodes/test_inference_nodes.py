@@ -6,7 +6,7 @@ import pytest
 from hypothesis import given, settings, strategies
 from hypothesis.extra.pandas import column, data_frames, range_indexes
 from keras.models import load_model
-from keras.preprocessing.sequence import pad_sequences
+from keras.utils import pad_sequences
 
 from pass_complexity.pipelines.inference.nodes import predict, predict_single
 

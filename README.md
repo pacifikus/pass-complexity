@@ -4,18 +4,17 @@
 [![Code review](https://github.com/pacifikus/pass-complexity/actions/workflows/code-review.yml/badge.svg)](https://github.com/pacifikus/pass-complexity/actions/workflows/code-review.yml)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
+
 ## Overview
 
 This is a project to predict password complexity
 
-## How to install dependencies
+## Install dependencies
 
-Declare any dependencies in `src/requirements.txt` for `pip` installation and `src/environment.yml` for `conda` installation.
-
-To install them, run:
+First of all, install project dependencies, with command:
 
 ```
-kedro install
+pip install -r src/requirements.txt
 ```
 
 ## Pipelines

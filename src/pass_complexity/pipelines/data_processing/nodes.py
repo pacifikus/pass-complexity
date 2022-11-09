@@ -1,7 +1,14 @@
+"""
+This is a boilerplate pipeline 'data_processing'
+generated using Kedro 0.18.3
+"""
+
+
 import re
 
 import pandas as pd
-from keras.preprocessing.sequence import pad_sequences
+from typing import Dict, Tuple
+from keras.utils import pad_sequences
 from keras.preprocessing.text import Tokenizer
 
 col_pass = 'Password'
@@ -70,21 +77,29 @@ def tokenize_data(
     tokenizer: Tokenizer,
     passwords: pd.DataFrame,
     test: pd.DataFrame,
-    max_input_length: int,
-) -> pd.DataFrame:
+    params: Dict,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Tokenize passwords.
 
     Args:
         tokenizer: fitted keras tokenizer.
         passwords: passwords for the training.
-        max_input_length: Max length of input text defined in parameters.yml.
+        params: dictionary with params defined in conf/base/parameters/data_processing.yml.
         test: passwords for the prediction.
     Returns:
         Tokenized train and test passwords
     """
     tokens = tokenizer.texts_to_sequences(passwords[col_pass])
     test_tokens = tokenizer.texts_to_sequences(test[col_pass])
-    tokenized_passwords = pad_sequences(tokens, max_input_length, padding='post')
-    tokenized_test = pad_sequences(test_tokens, max_input_length, padding='post')
+    tokenized_passwords = pad_sequences(
+        tokens,
+        params['max_input_length'],
+        padding='post',
+    )
+    tokenized_test = pad_sequences(
+        test_tokens,
+        params['max_input_length'],
+        padding='post',
+    )
     return pd.DataFrame(tokenized_passwords), pd.DataFrame(tokenized_test)
