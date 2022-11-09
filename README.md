@@ -68,7 +68,7 @@ The project includes 3 pipelines:
 
 Current pipeline DAG looks like:
 
-![Pipeline DAG](https://github.com/pacifikus/pass-complexity/blob/main/imgs/viz_pipelines.png)
+![Pipeline DAG](/imgs/pipeline_dark.png)
 
 
 ### How to run pipelines
