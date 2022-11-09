@@ -7,9 +7,51 @@
 
 ## Overview
 
-This is a project to predict password complexity
+This is a project to predict password complexity. Target is a real value indicating how many times the password could be encountered in one million random passwords.
 
-## Install dependencies
+## Data
+
+Data were taken from the Kaggle competition [DMIA.ProductionML 2021.1 Password complexity](https://www.kaggle.com/competitions/dmia-production-ml-2021-1-passwords/overview)
+
+## Metrics
+
+Main metric is RMSLE.  RMSLE is preferable when
+
+- targets having exponential growth, such as population counts, average sales of a commodity over a span of years etc
+- we care about percentage errors rather than the absolute value of errors.
+- there is a wide range in the target variables and we don’t want to penalize big differences when both the predicted and the actual are big numbers.
+- we want to penalize under estimates more than over estimates.
+
+You can find more information [here](https://hrngok.github.io/posts/metrics/#Root-Mean-Squared-Logaritmic-Error-(RMSLE))
+
+## Experiments setup
+
+- Hardware
+    - CPU count: 1
+    - GPU count: 1
+    - GPU type: Tesla T4
+- Software:
+    - Python version: 3.7.14
+    - OS: Linux-5.10.133+-x86_64-with-Ubuntu-18.04-bionic
+
+| Model                                 | RMSLE  |
+|---------------------------------------|--------|
+| Vanilla Linear Regression             | 0.5023 | 
+| Random Forest Regressor               | 0.5018 | 
+| RF Regressor with hyperparams tuning  | 0.5000 | 
+| Custom LSTM                           | 0.4091 | 
+
+## Recommended production hardware requirements
+
+- Hardware
+    - CPU: 4 CPU Cores
+    - GPU: single GPU with at least 4 GB GPU RAM (btw, you can use only CPU model inference. See also [CPU inference optimization](https://youtu.be/okcvDWkyw2Y?t=23964))
+    - RAM: 8 GB
+    - System disk space: 2 GB
+ 
+## How to run
+
+### Install dependencies
 
 First of all, install project dependencies, with command:
 
@@ -17,7 +59,7 @@ First of all, install project dependencies, with command:
 pip install -r src/requirements.txt
 ```
 
-## Pipelines
+### Pipelines
 
 The project includes 3 pipelines:
 - data processing pipeline with etl function
@@ -29,7 +71,7 @@ Current pipeline DAG looks like:
 ![Pipeline DAG](https://github.com/pacifikus/pass-complexity/blob/main/imgs/viz_pipelines.png)
 
 
-## How to run pipelines
+### How to run pipelines
 
 You can run pipelines from the project with:
 
