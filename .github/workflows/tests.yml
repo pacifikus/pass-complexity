@@ -24,7 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install kedro
-        kedro install
+        pip install -r src/requirements.txt
     - name: Test with pytest
       run: |
         kedro test
