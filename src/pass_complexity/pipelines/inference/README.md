@@ -1,21 +1,15 @@
 # Pipeline inference
 
-> *Note:* This is a `README.md` boilerplate generated using `Kedro 0.18.3`.
 
 ## Overview
 
-<!---
-Please describe your modular pipeline here.
--->
+Pipeline for the inference on the test data
 
 ## Pipeline inputs
 
-<!---
-The list of pipeline inputs.
--->
+- Trained model from `data/06_models`
+- Tokenized test data from `data/03_primary`
 
 ## Pipeline outputs
 
-<!---
-The list of pipeline outputs.
--->
+- Predictions for the test data
