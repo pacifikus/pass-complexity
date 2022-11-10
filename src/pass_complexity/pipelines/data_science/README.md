@@ -1,21 +1,15 @@
 # Pipeline data_science
 
-> *Note:* This is a `README.md` boilerplate generated using `Kedro 0.18.3`.
-
 ## Overview
 
-<!---
-Please describe your modular pipeline here.
--->
+The pipeline for training LSTM regression model via Keras framework 
 
 ## Pipeline inputs
 
-<!---
-The list of pipeline inputs.
--->
+- Tokenized train data of the `pandas.CSVDataSet` datatype from `data/03_primary` 
+- Target - `pandas.CSVDataSet` datatype from `data/03_primary`
+- training_options from `conf/base/data_science.yml`
 
 ## Pipeline outputs
 
-<!---
-The list of pipeline outputs.
--->
+Trained LSTM model and tokenizer in the `data/06_models`
