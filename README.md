@@ -86,11 +86,11 @@ You can run served model with [Flask](https://flask.palletsprojects.com/en/2.2.x
 
 To run the application from existing docker image run 
 ```
-docker run -p 5001:5001 pacifikus/dmia_pass_complexity
+docker run -p 5001:5001 pacificus/dmia_pass_complexity
 ```
 and go to `http://localhost:5001/predict?password={YOUR INPUT}`
 
 To create your own docker image with some modifications run from the project root
 ```
-docker build -t pacifikus/dmia_pass_complexity src/pass_complexity/api
+docker build -t dmia_pass_complexity src/pass_complexity/api
 ```
