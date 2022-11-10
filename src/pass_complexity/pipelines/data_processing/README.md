@@ -1,21 +1,13 @@
 # Pipeline data_processing
 
-> *Note:* This is a `README.md` boilerplate generated using `Kedro 0.18.3`.
-
 ## Overview
 
-<!---
-Please describe your modular pipeline here.
--->
+The pipeline for preprocessing input data for the next training.
 
 ## Pipeline inputs
 
-<!---
-The list of pipeline inputs.
--->
+Raw train & test data of the `pandas.CSVDataSet` datatype from `data/01_raw` 
 
 ## Pipeline outputs
 
-<!---
-The list of pipeline outputs.
--->
+Tokenized data of the `pandas.CSVDataSet` datatype in the `data/03_primary`
