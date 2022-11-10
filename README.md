@@ -79,3 +79,18 @@ You can run pipelines from the project with:
 ```
 kedro run
 ```
+
+### How to run app
+
+You can run served model with [Flask](https://flask.palletsprojects.com/en/2.2.x/) and [Waitress WSGI server](https://flask.palletsprojects.com/en/2.2.x/deploying/waitress/)
+
+To run the application from existing docker image run 
+```
+docker run -p 5001:5001 pacifikus/dmia_pass_complexity
+```
+and go to `http://localhost:5001/predict?password={YOUR INPUT}`
+
+To create your own docker image with some modifications run from the project root
+```
+docker build -t pacifikus/dmia_pass_complexity src/pass_complexity/api
+```
