@@ -39,7 +39,8 @@ You can find more information [here](https://hrngok.github.io/posts/metrics/#Roo
 | Vanilla Linear Regression             | 0.5023 | 
 | Random Forest Regressor               | 0.5018 | 
 | RF Regressor with hyperparams tuning  | 0.5000 | 
-| Custom LSTM                           | 0.4091 | 
+| TF-IDF + Linear Regression            | 0.4831 | 
+| Custom LSTM                           | 0.3428 | 
 
 ## Recommended production hardware requirements
 
