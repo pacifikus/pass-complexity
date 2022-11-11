@@ -124,7 +124,7 @@ Load testing was performed with such configuration:
     - RAM: 16 GB
     - System disk space: 20 GB
 - Testing setup
-    - Number of users: 500
+    - Number of users: 300
     - Spawn rate: 1
     
 So, with this hardware server can handle up to **16 RPS**.
