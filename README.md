@@ -129,4 +129,4 @@ Load testing was performed with such configuration:
     
 Load testing charts you can see below
 
-![Locust charts](/imgs/total_requests_per_second_1668154271.png')
+![Locust charts](/imgs/total_requests_per_second_1668154271.png)
