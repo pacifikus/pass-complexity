@@ -94,3 +94,39 @@ To create your own docker image with some modifications run from the project roo
 ```
 docker build -t dmia_pass_complexity src/pass_complexity/api
 ```
+
+### Testing
+
+#### Unit testing
+
+You can run nodes unit tests with:
+
+```
+kedro test
+```
+
+#### Load testing
+
+There is load test written with [Locust](https://locust.io/) in the `src/tests/load/locustfile.py`.
+To run test follow these steps:
+- install locust with `pip install locust`
+- go to load tests folder
+- run locust web UI with command `locust`
+- open `http://localhost:8089/` and specify test params (Number of users, Spawn rate, Host with running search server)
+- start swarming
+
+Also, you can run load tests without web UI, see [Locust docs](https://docs.locust.io/en/stable/running-without-web-ui.html#running-without-web-ui)
+
+Load testing was performed with such configuration:
+
+- Hardware
+    - CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz   2.59 GHz
+    - RAM: 16 GB
+    - System disk space: 20 GB
+- Testing setup
+    - Number of users: 500
+    - Spawn rate: 1
+    
+Load testing charts you can see below
+
+![Locust charts](/imgs/total_requests_per_second_1668154271.png')
