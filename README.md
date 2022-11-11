@@ -131,4 +131,4 @@ So, with this hardware server can handle up to **16 RPS**.
 
 Load testing charts you can see below
 
-![Locust charts](/imgs/total_requests_per_second_1668154271.png)
+![Locust charts](/imgs/total_requests_per_second_1668155948.png)
